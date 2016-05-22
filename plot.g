@@ -10,18 +10,4 @@ set rmargin 0
 set xrange[0:99]
 set yrange[0:99]
 
-splot 'phi.dat' matrix with image
-
-set output 'b.png'
-
-set xtics
-set ytics
-
-unset bmargin 
-unset tmargin 
-unset lmargin
-unset rmargin 
-
-plot 'naboj.dat' u 2:3 notitle
-
-set terminal wxt
+splot 'phi.dat' matrix with image, 'naboj.dat' u 2:3:(1) with lines notitle
