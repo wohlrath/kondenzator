@@ -6,15 +6,25 @@ clear
 load 'phi.dat'
 dim = size(phi);
 
-disp('Pocatecni podminky:')
-v=[0 0]
-x=[25 75]
+##19 bodu
+
+xpoc=zeros(19,2);
+xpoc(:,1)=5:5:95;
+xpoc(:,2)=98*ones(19,1);
+
 m=0.1 
-disp('a=-m*grad(phi)')
+disp('a=-m*grad(phi)');
 
 maxt=1000;
 t=1;
 
+
+
+for cit=1:19
+x=xpoc(cit,:);
+v=zeros(1,2);
+clear hist;
+t=1;
 hist(1,:)=[1 x];
 
 while (x(1)>1 && x(2)>1 && x(1)<dim(1) && x(2)<dim(2) && t<=maxt)
@@ -27,4 +37,6 @@ hist(t,:)=[t x];
 
 endwhile;
 
-save -ascii 'naboj.dat' hist
+save(sprintf("data/naboj%03d.dat",cit), 'hist', '-ascii')
+
+endfor

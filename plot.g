@@ -10,4 +10,6 @@ set rmargin 0
 set xrange[0:99]
 set yrange[0:99]
 
-splot 'phi.dat' matrix with image, 'naboj.dat' u 2:3:(1) with lines notitle
+filename(n)=sprintf("data/naboj%03d.dat",n)
+
+splot 'phi.dat' matrix with image, for [i=1:19] filename(i) u 2:3:(1) ls 1 with lines notitle
